@@ -34,10 +34,6 @@
       "relation": "manyToMany",
       "target": "api::book.book",
       "mappedBy": "authors"
-    },
-    "authorid": {
-      "type": "uid",
-      "required": true
     }
   }
 }

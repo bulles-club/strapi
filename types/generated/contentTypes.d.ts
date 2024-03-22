@@ -808,7 +808,6 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'manyToMany',
       'api::book.book'
     >;
-    authorid: Attribute.UID & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
