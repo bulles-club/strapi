@@ -902,18 +902,7 @@ export interface ApiBookBook extends Schema.CollectionType {
       'manyToMany',
       'api::author.author'
     >;
-    series: Attribute.Relation<
-      'api::book.book',
-      'manyToOne',
-      'api::serie.serie'
-    >;
     SeriesVolume: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    PublicationDate: Attribute.Date &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
@@ -922,23 +911,29 @@ export interface ApiBookBook extends Schema.CollectionType {
     PageCount: Attribute.Integer &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
     ISBN10: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }> &
-      Attribute.DefaultTo<'9-9999-9999-9'>;
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 10;
+      }>;
     ISBN13: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }> &
-      Attribute.DefaultTo<'999-9-9999-9999-9'>;
+      Attribute.SetMinMaxLength<{
+        minLength: 13;
+        maxLength: 13;
+      }>;
     Genre: Attribute.Relation<'api::book.book', 'oneToOne', 'api::genre.genre'>;
     AgeGroup: Attribute.Enumeration<
       ['All', 'Children', 'Teenagers', 'Adults']
@@ -956,6 +951,22 @@ export interface ApiBookBook extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'Franco-belge'>;
+    PublicationYear: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    Publisher: Attribute.Relation<
+      'api::book.book',
+      'oneToOne',
+      'api::publisher.publisher'
+    >;
+    Series: Attribute.Relation<
+      'api::book.book',
+      'manyToOne',
+      'api::serie.serie'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1025,6 +1036,7 @@ export interface ApiPublisherPublisher extends Schema.CollectionType {
     singularName: 'publisher';
     pluralName: 'publishers';
     displayName: 'Publisher';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1032,7 +1044,7 @@ export interface ApiPublisherPublisher extends Schema.CollectionType {
   attributes: {
     Name: Attribute.String;
     Country: Attribute.Enumeration<
-      ['France', 'Spain', 'United States', 'England', 'Germany']
+      ['France', 'Spain', 'United States', 'England', 'Germany', 'Belgium']
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1075,19 +1087,19 @@ export interface ApiSerieSerie extends Schema.CollectionType {
           localized: true;
         };
       }>;
-    FirstPublicationDate: Attribute.Date &
+    Ended: Attribute.Boolean &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }>;
-    Ended: Attribute.Boolean &
+    FirstPublicationYear: Attribute.Integer &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: true;
+          localized: false;
         };
       }>;
-    books: Attribute.Relation<
+    Books: Attribute.Relation<
       'api::serie.serie',
       'oneToMany',
       'api::book.book'

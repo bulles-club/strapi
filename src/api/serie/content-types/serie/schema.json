@@ -24,27 +24,27 @@
         }
       }
     },
-    "FirstPublicationDate": {
-      "type": "date",
+    "Ended": {
+      "type": "boolean",
       "pluginOptions": {
         "i18n": {
           "localized": false
         }
       }
     },
-    "Ended": {
-      "type": "boolean",
+    "FirstPublicationYear": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
-      }
+      },
+      "type": "integer"
     },
-    "books": {
+    "Books": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::book.book",
-      "mappedBy": "series"
+      "mappedBy": "Series"
     }
   }
 }

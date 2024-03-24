@@ -4,7 +4,8 @@
   "info": {
     "singularName": "publisher",
     "pluralName": "publishers",
-    "displayName": "Publisher"
+    "displayName": "Publisher",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,7 +22,8 @@
         "Spain",
         "United States",
         "England",
-        "Germany"
+        "Germany",
+        "Belgium"
       ]
     }
   }

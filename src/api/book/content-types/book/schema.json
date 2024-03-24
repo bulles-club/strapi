@@ -60,22 +60,8 @@
       "target": "api::author.author",
       "inversedBy": "arts"
     },
-    "series": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::serie.serie",
-      "inversedBy": "books"
-    },
     "SeriesVolume": {
       "type": "integer",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      }
-    },
-    "PublicationDate": {
-      "type": "date",
       "pluginOptions": {
         "i18n": {
           "localized": false
@@ -86,29 +72,29 @@
       "type": "integer",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       }
     },
     "ISBN10": {
       "type": "string",
-      "default": "9-9999-9999-9",
-      "regex": "^(?:ISBN(?:-10)?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)↵ [0-9]{1,5}[- ]?[0-9]+[-●]?[0-9]+[-●]?[0-9X]$",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
-      }
+      },
+      "maxLength": 10,
+      "minLength": 10
     },
     "ISBN13": {
       "type": "string",
-      "regex": "^(?:ISBN(?:-13)?:? )?(?=[0-9]{13}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)↵ 97[89][- ]?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9]$",
-      "default": "999-9-9999-9999-9",
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
-      }
+      },
+      "minLength": 13,
+      "maxLength": 13
     },
     "Genre": {
       "type": "relation",
@@ -143,6 +129,25 @@
         "Comics"
       ],
       "default": "Franco-belge"
+    },
+    "PublicationYear": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": false
+        }
+      },
+      "type": "integer"
+    },
+    "Publisher": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::publisher.publisher"
+    },
+    "Series": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::serie.serie",
+      "inversedBy": "Books"
     }
   }
 }
