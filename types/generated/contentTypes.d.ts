@@ -875,12 +875,14 @@ export interface ApiBookBook extends Schema.CollectionType {
   };
   attributes: {
     Title: Attribute.String &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
     Description: Attribute.Blocks &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

@@ -22,7 +22,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "Description": {
       "type": "blocks",
@@ -30,17 +31,15 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true
     },
     "Images": {
       "type": "media",
       "multiple": true,
       "required": false,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "images"
       ],
       "pluginOptions": {
         "i18n": {
