@@ -23,7 +23,8 @@
           "localized": true
         }
       },
-      "required": true
+      "required": true,
+      "unique": true
     },
     "Description": {
       "type": "blocks",
@@ -115,20 +116,6 @@
       },
       "default": "All"
     },
-    "Type": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "type": "enumeration",
-      "enum": [
-        "Franco-belge",
-        "Manga",
-        "Comics"
-      ],
-      "default": "Franco-belge"
-    },
     "PublicationYear": {
       "pluginOptions": {
         "i18n": {
@@ -147,6 +134,20 @@
       "relation": "manyToOne",
       "target": "api::serie.serie",
       "inversedBy": "Books"
+    },
+    "Type": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "enumeration",
+      "enum": [
+        "Franco-Belge",
+        "Manga",
+        "Comics"
+      ],
+      "default": "Franco-Belge"
     }
   }
 }

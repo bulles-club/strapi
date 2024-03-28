@@ -22,7 +22,8 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "unique": true
     },
     "Bio": {
       "type": "blocks",
@@ -59,6 +60,12 @@
       "relation": "manyToMany",
       "target": "api::book.book",
       "mappedBy": "Artists"
+    },
+    "series": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::serie.serie",
+      "mappedBy": "Creators"
     }
   }
 }

@@ -22,7 +22,9 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "unique": true,
+      "required": true
     }
   }
 }

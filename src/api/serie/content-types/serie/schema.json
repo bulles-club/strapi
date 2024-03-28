@@ -22,7 +22,9 @@
         "i18n": {
           "localized": true
         }
-      }
+      },
+      "required": true,
+      "unique": true
     },
     "Ended": {
       "type": "boolean",
@@ -45,6 +47,20 @@
       "relation": "oneToMany",
       "target": "api::book.book",
       "mappedBy": "Series"
+    },
+    "Description": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "blocks"
+    },
+    "Creators": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::author.author",
+      "inversedBy": "series"
     }
   }
 }
