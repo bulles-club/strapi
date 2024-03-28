@@ -5,3 +5,4 @@ RUN yarn build
 EXPOSE 1337
 WORKDIR /usr/app
 CMD ["yarn", "start"]
+    
