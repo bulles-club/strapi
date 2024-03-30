@@ -4,9 +4,6 @@
   "private": true,
   "description": "A Strapi application",
   "license": "MIT",
-  "author": {
-    "name": "A Strapi developer"
-  },
   "scripts": {
     "build": "strapi build",
     "develop": "strapi develop",
