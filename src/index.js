@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   /**
@@ -7,7 +7,22 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register({ strapi }) {
+    const extensionService = strapi.plugin("graphql").service("extension");
+    extensionService.use(({ nexus }) => ({
+      types: [
+        nexus.extendType({
+          type: "UsersPermissionsMe",
+          definition(t) {
+            t.string("firstname");
+            t.string("lastname");
+            t.date("dateofbirth");
+            t.json("addresses");
+          },
+        }),
+      ],
+    }));
+  },
 
   /**
    * An asynchronous bootstrap function that runs before
