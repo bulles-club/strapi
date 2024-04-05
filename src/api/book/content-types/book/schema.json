@@ -148,6 +148,12 @@
         "Comics"
       ],
       "default": "Franco-Belge"
+    },
+    "carts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::cart.cart",
+      "mappedBy": "books"
     }
   }
 }

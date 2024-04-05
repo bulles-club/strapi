@@ -728,6 +728,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     dateofbirth: Attribute.Date;
     phonenumber: Attribute.String;
     addresses: Attribute.JSON;
+    cart: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::cart.cart'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -980,6 +985,7 @@ export interface ApiBookBook extends Schema.CollectionType {
         };
       }> &
       Attribute.DefaultTo<'Franco-Belge'>;
+    carts: Attribute.Relation<'api::book.book', 'manyToMany', 'api::cart.cart'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -993,6 +999,33 @@ export interface ApiBookBook extends Schema.CollectionType {
       'api::book.book'
     >;
     locale: Attribute.String;
+  };
+}
+
+export interface ApiCartCart extends Schema.CollectionType {
+  collectionName: 'carts';
+  info: {
+    singularName: 'cart';
+    pluralName: 'carts';
+    displayName: 'carts';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    users_permissions_user: Attribute.Relation<
+      'api::cart.cart',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    books: Attribute.Relation<'api::cart.cart', 'manyToMany', 'api::book.book'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::cart.cart', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
   };
 }
 
@@ -1040,6 +1073,53 @@ export interface ApiGenreGenre extends Schema.CollectionType {
       'api::genre.genre',
       'oneToMany',
       'api::genre.genre'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiHomepageHomepage extends Schema.SingleType {
+  collectionName: 'homepages';
+  info: {
+    singularName: 'homepage';
+    pluralName: 'homepages';
+    displayName: 'Homepage';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    Component1: Attribute.DynamicZone<['books.hero-slider']> &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::homepage.homepage',
+      'oneToMany',
+      'api::homepage.homepage'
     >;
     locale: Attribute.String;
   };
@@ -1176,7 +1256,9 @@ declare module '@strapi/types' {
       'plugin::i18n.locale': PluginI18NLocale;
       'api::author.author': ApiAuthorAuthor;
       'api::book.book': ApiBookBook;
+      'api::cart.cart': ApiCartCart;
       'api::genre.genre': ApiGenreGenre;
+      'api::homepage.homepage': ApiHomepageHomepage;
       'api::publisher.publisher': ApiPublisherPublisher;
       'api::serie.serie': ApiSerieSerie;
     }

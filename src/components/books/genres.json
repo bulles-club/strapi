@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_books_genres",
+  "info": {
+    "displayName": "Genres",
+    "icon": "apps",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

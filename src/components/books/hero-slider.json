@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_books_hero_sliders",
+  "info": {
+    "displayName": "HeroSlider",
+    "icon": "stack"
+  },
+  "options": {},
+  "attributes": {
+    "books": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book"
+    }
+  }
+}
