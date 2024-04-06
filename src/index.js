@@ -8,6 +8,9 @@ module.exports = {
    * This gives you an opportunity to extend code.
    */
   register({ strapi }) {
+    const { toEntityResponse } = strapi
+      .plugin("graphql")
+      .service("format").returnTypes;
     const extensionService = strapi.plugin("graphql").service("extension");
     extensionService.use(({ nexus }) => ({
       types: [
@@ -16,8 +19,25 @@ module.exports = {
           definition(t) {
             t.string("firstname");
             t.string("lastname");
+            t.string("phonenumber");
             t.date("dateofbirth");
             t.json("addresses");
+            t.field("cart", {
+              type: "CartEntityResponse",
+              resolve: async (root, args) => {
+                const userData = await strapi.db
+                  .query("plugin::users-permissions.user")
+                  .findOne({
+                    select: [],
+                    where: { id: root.id },
+                    populate: { cart: true },
+                  });
+                return toEntityResponse(userData.cart ?? {}, {
+                  args,
+                  resourceUID: "api::cart.cart",
+                });
+              },
+            });
           },
         }),
       ],
