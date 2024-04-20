@@ -848,6 +848,12 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
       'manyToMany',
       'api::serie.serie'
     >;
+    Slug: Attribute.UID<'api::author.author', 'Name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -954,7 +960,7 @@ export interface ApiBookBook extends Schema.CollectionType {
       }>;
     Genre: Attribute.Relation<'api::book.book', 'oneToOne', 'api::genre.genre'>;
     AgeGroup: Attribute.Enumeration<
-      ['All', 'Children', 'Teenagers', 'Adults']
+      ['All', 'Adults', 'Tous ages', 'Enfants', 'Adolescents', 'Adultes']
     > &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -986,6 +992,12 @@ export interface ApiBookBook extends Schema.CollectionType {
       }> &
       Attribute.DefaultTo<'Franco-Belge'>;
     carts: Attribute.Relation<'api::book.book', 'manyToMany', 'api::cart.cart'>;
+    Slug: Attribute.UID<'api::book.book', 'Title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1212,6 +1224,12 @@ export interface ApiSerieSerie extends Schema.CollectionType {
       'manyToMany',
       'api::author.author'
     >;
+    Slug: Attribute.UID<'api::serie.serie', 'Name'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

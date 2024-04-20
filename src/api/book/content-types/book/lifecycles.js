@@ -79,6 +79,7 @@ async function buildIndexObject(bookId) {
   return {
     objectID: book.id,
     title: book.Title,
+    slug: book.Slug,
     description: book.Description?.filter(
       (item) => item.type === "paragraph"
     ).reduce(

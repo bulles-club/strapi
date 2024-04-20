@@ -105,9 +105,11 @@
       "type": "enumeration",
       "enum": [
         "All",
-        "Children",
-        "Teenagers",
-        "Adults"
+        "Adults",
+        "Tous ages",
+        "Enfants",
+        "Adolescents",
+        "Adultes"
       ],
       "pluginOptions": {
         "i18n": {
@@ -154,6 +156,15 @@
       "relation": "manyToMany",
       "target": "api::cart.cart",
       "mappedBy": "books"
+    },
+    "Slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "Title"
     }
   }
 }
