@@ -15,6 +15,7 @@ module.exports = {
       }, 5000);
     }
   },
+
   async afterUpdate(event) {
     if (event.result.publishedAt) {
       setTimeout(async () => {
@@ -34,6 +35,7 @@ module.exports = {
       }, 5000);
     } else deleteIndexableBook(event);
   },
+
   afterDelete(event) {
     deleteIndexableBook(event);
   },
@@ -43,7 +45,7 @@ function updateIndexableBook(book) {
   index
     .partialUpdateObject(book)
     .then((param) => {
-      console.log(`book updated in index: ${param}`);
+      console.log("book updated in index", param);
     })
     .catch((err) => {
       console.error(err);
@@ -54,7 +56,7 @@ function createIndexableBook(book) {
   index
     .saveObject(book)
     .then((param) => {
-      console.log(`book created in index: ${param}`);
+      console.log("book created in index", param);
     })
     .catch((err) => {
       console.error(err);
@@ -65,7 +67,7 @@ function deleteIndexableBook(event) {
   index
     .deleteObject(event.result.id)
     .then((param) => {
-      console.log(`book deleted from index: ${param}`);
+      console.log("book deleted from index", param);
     })
     .catch((err) => {
       console.error(err);
@@ -84,13 +86,13 @@ async function buildIndexObject(bookId) {
       (item) => item.type === "paragraph"
     ).reduce(
       (desc, item) =>
-        desc + item.children.reduce((text, item) => text + item.text, ""),
+        desc + item.children.reduce((text, item) => `${text} ${item.text}`, ""),
       ""
     ),
     ageGroup: book.AgeGroup,
     type: book.Type,
     genre: book.Genre?.Title,
-    images: book.Images?.map((item) => item.url),
+    coverUrl: book.Images[0].url,
     series: book.Series?.Name,
     scriptWriters: book.ScriptWriters?.map((item) => item.Name),
     artists: book.Artists?.map((item) => item.Name),
