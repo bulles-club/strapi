@@ -76,16 +76,6 @@
         }
       }
     },
-    "ISBN10": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
-      "maxLength": 10,
-      "minLength": 10
-    },
     "ISBN13": {
       "type": "string",
       "pluginOptions": {
@@ -104,8 +94,6 @@
     "AgeGroup": {
       "type": "enumeration",
       "enum": [
-        "All",
-        "Adults",
         "Tous ages",
         "Enfants",
         "Adolescents",
@@ -116,7 +104,7 @@
           "localized": false
         }
       },
-      "default": "All"
+      "default": "Tous ages"
     },
     "PublicationYear": {
       "pluginOptions": {

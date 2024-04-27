@@ -854,6 +854,12 @@ export interface ApiAuthorAuthor extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    Links: Attribute.Component<'shared.external-link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -938,16 +944,6 @@ export interface ApiBookBook extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    ISBN10: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }> &
-      Attribute.SetMinMaxLength<{
-        minLength: 10;
-        maxLength: 10;
-      }>;
     ISBN13: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -960,14 +956,14 @@ export interface ApiBookBook extends Schema.CollectionType {
       }>;
     Genre: Attribute.Relation<'api::book.book', 'oneToOne', 'api::genre.genre'>;
     AgeGroup: Attribute.Enumeration<
-      ['All', 'Adults', 'Tous ages', 'Enfants', 'Adolescents', 'Adultes']
+      ['Tous ages', 'Enfants', 'Adolescents', 'Adultes']
     > &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: false;
         };
       }> &
-      Attribute.DefaultTo<'All'>;
+      Attribute.DefaultTo<'Tous ages'>;
     PublicationYear: Attribute.Integer &
       Attribute.SetPluginOptions<{
         i18n: {

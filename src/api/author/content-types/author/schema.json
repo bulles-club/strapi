@@ -75,6 +75,16 @@
       },
       "type": "uid",
       "targetField": "Name"
+    },
+    "Links": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.external-link"
     }
   }
 }
