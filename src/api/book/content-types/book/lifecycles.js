@@ -97,5 +97,6 @@ async function buildIndexObject(bookId) {
     scriptWriters: book.ScriptWriters?.map((item) => item.Name),
     artists: book.Artists?.map((item) => item.Name),
     publisher: book.Publisher?.Name,
+    publicationYear: book.PublicationYear,
   };
 }
