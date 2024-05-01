@@ -25,6 +25,15 @@
       },
       "unique": true,
       "required": true
+    },
+    "Slug": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "uid",
+      "targetField": "Title"
     }
   }
 }

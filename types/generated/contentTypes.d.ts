@@ -1062,6 +1062,12 @@ export interface ApiGenreGenre extends Schema.CollectionType {
           localized: true;
         };
       }>;
+    Slug: Attribute.UID<'api::genre.genre', 'Title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
